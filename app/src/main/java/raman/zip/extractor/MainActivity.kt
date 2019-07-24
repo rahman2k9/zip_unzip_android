@@ -1,5 +1,6 @@
 package raman.zip.extractor
 
+import android.Manifest
 import android.os.Bundle
 import android.os.Environment
 import android.support.v7.app.AppCompatActivity
@@ -10,21 +11,20 @@ import kotlinx.android.synthetic.main.activity_main.*
 import pub.devrel.easypermissions.EasyPermissions
 import pub.devrel.easypermissions.PermissionRequest
 import java.io.File
+import android.Manifest.permission
+import android.Manifest.permission.VIBRATE
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, EasyPermissions.PermissionCallbacks {
 
+    var perms = arrayOf(permission.READ_EXTERNAL_STORAGE, permission.WRITE_EXTERNAL_STORAGE)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        EasyPermissions.requestPermissions(
-            PermissionRequest.Builder(
-                this,
-                502,
-                "android.Manifest.permission.READ_EXTERNAL_STORAGE,android.Manifest.permission.WRITE_EXTERNAL_STORAGE"
-            )
-                .build()
-        )
+
+        if (EasyPermissions.hasPermissions(this, *perms))
+            EasyPermissions.requestPermissions(this, "", 502, *perms)
 
         buttonExtract.setOnClickListener(this)
         buttonChoose.setOnClickListener(this)
