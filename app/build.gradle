@@ -36,6 +36,15 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
+
+    //Permissions
+    implementation 'pub.devrel:easypermissions:2.0.1'
+
+    //Zip Unzip Library
     implementation 'com.hzy:libp7zip:1.6.0'
+
+    //FILE PICKER
+//    implementation 'com.github.jaiselrahman:FilePicker:1.2.2'
+
 
 }
